@@ -9,6 +9,7 @@ import (
 	pb "Distributed-ORDER-system/proto"
 
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials/insecure"
 )
 
 type server struct {
@@ -19,11 +20,11 @@ func (s *server) CreateOrder(ctx context.Context, req *pb.OrderRequest) (*pb.Ord
 
 	log.Println("Order Created")
 
-	paymentConn, _ := grpc.Dial("localhost:50051", grpc.WithInsecure())
+	paymentConn, _ := grpc.NewClient("payment:50051", grpc.WithTransportCredentials(),insecure.NewCredentials() )
 	paymentClient := pb.NewPaymentServiceClient(paymentConn)
 
 
-	shippingConn, _ := grpc.Dial("localhost:50052", grpc.WithInsecure())
+	shippingConn, _ := grpc.NewClient("shipping:50052", grpc.WithTransportCredentials(),insecure.NewCredentials() )
 	shippingClient := pb.NewShippingServiceClient(shippingConn)
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)

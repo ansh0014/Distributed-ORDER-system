@@ -130,7 +130,7 @@ This project demonstrates:
 * Add persistent storage (database)
 * Introduce service discovery
 * Add logging and tracing
-* Containerize using Docker
+
 * Deploy using Kubernetes
 
 ---
