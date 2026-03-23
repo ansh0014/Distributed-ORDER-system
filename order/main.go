@@ -20,11 +20,11 @@ func (s *server) CreateOrder(ctx context.Context, req *pb.OrderRequest) (*pb.Ord
 
 	log.Println("Order Created")
 
-	paymentConn, _ := grpc.NewClient("payment:50051", grpc.WithTransportCredentials(),insecure.NewCredentials() )
+	paymentConn, _ := grpc.NewClient("payment:50051", grpc.WithTransportCredentials(insecure.NewCredentials()))
 	paymentClient := pb.NewPaymentServiceClient(paymentConn)
 
 
-	shippingConn, _ := grpc.NewClient("shipping:50052", grpc.WithTransportCredentials(),insecure.NewCredentials() )
+	shippingConn, _ := grpc.NewClient("shipping:50052", grpc.WithTransportCredentials(insecure.NewCredentials()))
 	shippingClient := pb.NewShippingServiceClient(shippingConn)
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)

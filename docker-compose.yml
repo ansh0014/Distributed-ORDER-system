@@ -1,0 +1,27 @@
+version: "3.9"
+
+services:
+
+  payment:
+    build:
+      context: .
+      dockerfile: payment/dockerfile
+    ports:
+      - "50051:50051"
+
+  shipping:
+    build:
+      context: .
+      dockerfile: shipping/dockerfile
+    ports:
+      - "50052:50052"
+
+  order:
+    build:
+      context: .
+      dockerfile: order/dockerfile
+    ports:
+      - "50053:50053"
+    depends_on:
+      - payment
+      - shipping
