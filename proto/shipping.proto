@@ -1,0 +1,13 @@
+syntax = "proto3";
+package shipping;
+option go_package = "Distributed-ORDER-system/proto";
+service ShippingService {
+  rpc StartShipping (ShippingRequest) returns (ShippingResponse);
+}
+message ShippingRequest {
+  int32 order_id = 1;
+}
+
+message ShippingResponse {
+  string status = 1;
+}
