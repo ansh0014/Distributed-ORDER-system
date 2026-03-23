@@ -189,6 +189,8 @@ protoc --go_out=. --go-grpc_out=. proto/*.proto
 ```
 
 ---
+# System Design 
+![alt text](image.png)
 
 ## Project Highlights
 
